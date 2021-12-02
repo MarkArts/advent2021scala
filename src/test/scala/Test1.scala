@@ -14,3 +14,7 @@ class Day1:
   @Test def test_countIncreased_none(): Unit = 
     var input = List(10,9,8,7)
     assertEquals(0, countIncreased(input))
+
+  @Test def test_sliding_window(): Unit =
+      var input = List(607, 618, 618, 617, 647, 716, 769, 792)
+      assertEquals(5, countSlidingIncrease(input))
