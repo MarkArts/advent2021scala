@@ -40,6 +40,18 @@ class Day3:
     assertEquals(Some(1), getLeastCommonBit(2, input))
     assertEquals(Some(1), getLeastCommonBit(3, input))
     assertEquals(Some(0), getLeastCommonBit(4, input))
+
+  @Test def test_bit_tie(): Unit =
+    val input = List(
+      List(1,0,1,0,1),
+      List(0,1,0,1,0),
+    )
+
+    for (i <- 0 until input(0).length) 
+      assertEquals(Some(1), getMostCommonBit(i, input))
+
+    for (i <- 0 until input(0).length) 
+      assertEquals(Some(0), getLeastCommonBit(i, input))
   
   @Test def test_bit_out_of_range(): Unit =
     val input = List(
