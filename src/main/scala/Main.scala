@@ -2,6 +2,7 @@ import scala.io.Source
 
 val day1File = "./inputs/day1.txt"
 val day2File = "./inputs/day2.txt"
+val day3File = "./inputs/day3.txt"
 
 @main def day1: Unit = 
   var inputs = Source.fromFile(day1File).getLines.map(l => l.toInt).toList
@@ -23,3 +24,25 @@ val day2File = "./inputs/day2.txt"
     sub2.input(i)
   
   println(List(sub2.position.x, sub2.position.y, sub2.position.x * sub2.position.y))
+
+
+@main def day3: Unit = 
+  val inputs = Source.fromFile(day3File).getLines.toList
+  
+  val diagnostic = inputToDiagnostic(inputs)
+
+  val epsilonRate = getEpsilonRate(diagnostic)
+  val gammaRate = getGammaRate(diagnostic)
+  println(List(
+    epsilonRate,
+    gammaRate,
+    epsilonRate * gammaRate
+  ))
+
+  val oxygenRating = getOxygenRating(diagnostic)
+  val co2Rating = getCO2Rating(diagnostic)
+  println(List(
+    oxygenRating,
+    co2Rating,
+    oxygenRating * co2Rating
+  ))

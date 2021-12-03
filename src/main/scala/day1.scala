@@ -1,7 +1,7 @@
-case class Step(left: Int, right: Int)
-def createSteps(xs: List[Int]): List[Step] = xs match {
+case class Step[T](left: T, right: T)
+def createSteps[T](xs: List[T]): List[Step[T]] = xs match {
   case head :: head2 :: tail => List(Step(head, head2)) ++ createSteps(head2 :: tail)
-  case _ => List[Step]()
+  case _ => List[Step[T]]()
 }
 
 def countIncreased(measurements: List[Int]): Int =
