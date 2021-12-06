@@ -3,7 +3,7 @@ import org.junit.Assert.*
 
 class Day3:
   @Test def test_unique(): Unit =
-    val input = List(1,0,1,1,0,0,1)
+    val input = List(1, 0, 1, 1, 0, 0, 1)
     assertEquals(Map(1 -> 4, 0 -> 3), unique(input))
 
   @Test def test_bytesToInt(): Unit =
@@ -15,11 +15,11 @@ class Day3:
 
   @Test def test_most_common_bit(): Unit =
     val input = List(
-      List(1,0,1,0,1),
-      List(0,0,1,0,1),
-      List(0,1,0,0,1),
-      List(1,0,0,1,0),
-      List(1,0,0,1,0),
+      List(1, 0, 1, 0, 1),
+      List(0, 0, 1, 0, 1),
+      List(0, 1, 0, 0, 1),
+      List(1, 0, 0, 1, 0),
+      List(1, 0, 0, 1, 0)
     )
     assertEquals(Some(1), getMostCommonBit(0, input))
     assertEquals(Some(0), getMostCommonBit(1, input))
@@ -29,11 +29,11 @@ class Day3:
 
   @Test def test_least_common_bit(): Unit =
     val input = List(
-      List(1,0,1,0,1),
-      List(0,0,1,0,1),
-      List(0,1,0,0,1),
-      List(1,0,0,1,0),
-      List(1,0,0,1,0),
+      List(1, 0, 1, 0, 1),
+      List(0, 0, 1, 0, 1),
+      List(0, 1, 0, 0, 1),
+      List(1, 0, 0, 1, 0),
+      List(1, 0, 0, 1, 0)
     )
     assertEquals(Some(0), getLeastCommonBit(0, input))
     assertEquals(Some(1), getLeastCommonBit(1, input))
@@ -43,8 +43,8 @@ class Day3:
 
   @Test def test_bit_tie(): Unit =
     val input = List(
-      List(1,0,1,0,1),
-      List(0,1,0,1,0),
+      List(1, 0, 1, 0, 1),
+      List(0, 1, 0, 1, 0)
     )
 
     for (i <- 0 until input(0).length)
@@ -55,7 +55,7 @@ class Day3:
 
   @Test def test_bit_out_of_range(): Unit =
     val input = List(
-      List(1,0,1,0,1)
+      List(1, 0, 1, 0, 1)
     )
 
     assertEquals(None, getMostCommonBit(-1, input))
@@ -66,13 +66,13 @@ class Day3:
       "00100",
       "11110",
       "10110",
-      "10111",
+      "10111"
     )
     val expected = List(
-      List(0,0,1,0,0),
-      List(1,1,1,1,0),
-      List(1,0,1,1,0),
-      List(1,0,1,1,1)
+      List(0, 0, 1, 0, 0),
+      List(1, 1, 1, 1, 0),
+      List(1, 0, 1, 1, 0),
+      List(1, 0, 1, 1, 1)
     )
 
     assertEquals(expected, inputToDiagnostic(input))

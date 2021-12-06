@@ -9,7 +9,7 @@ def countIncreased(measurements: List[Int]): Int =
     .map( x => x.left < x.right)
     .filter(x => x == true)
     .length
-  
+
 case class Triptych(first: Int, second: Int, third: Int)
 def createTriptychs(xs: List[Int]): List[Triptych] = xs match {
   case first :: second :: third :: tail => List(Triptych(first, second, third)) ++ createTriptychs(second :: third :: tail)
@@ -20,7 +20,7 @@ def createTriptychs(xs: List[Int]): List[Triptych] = xs match {
 def countSlidingIncrease(measurements: List[Int]): Int =
   val windows = createTriptychs(measurements)
     .map(t => t.first + t.second + t.third)
-  
+
   createSteps(windows)
     .map(x => x.left < x.right)
     .filter(x => x == true)
