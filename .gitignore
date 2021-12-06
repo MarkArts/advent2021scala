@@ -70,3 +70,5 @@ project/**/metals.sbt
 project/project
 
 .bsp
+
+.metals

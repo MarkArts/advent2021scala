@@ -4,6 +4,7 @@ val day1File = "./inputs/day1.txt"
 val day2File = "./inputs/day2.txt"
 val day3File = "./inputs/day3.txt"
 val day4File = "./inputs/day4.txt"
+val day5File = "./inputs/day5.txt"
 
 @main def day1: Unit =
   var inputs = Source.fromFile(day1File).getLines.map(l => l.toInt).toList
@@ -59,3 +60,9 @@ val day4File = "./inputs/day4.txt"
 
   println(getWinningScore(boards, numbers))
   println(getLosingScore(boards, numbers))
+
+@main def day5: Unit =
+  val input = Source.fromFile(day5File).getLines
+  val lines = input.map(parseLine).filter(isStraight).toList
+
+  println(getIntersections(drawGrid(lines), 2))
