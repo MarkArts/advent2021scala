@@ -21,11 +21,11 @@ class Day2:
         Vector2(0, 8),
         Vector2(2, 0),
     ), vectors)
-        
+
     val sub = Submarine()
     for (v <- vectors)
         sub.move(v)
-    
+
     assertEquals(15, sub.position.x)
     assertEquals(10, sub.position.y)
     assertEquals(150, sub.position.x * sub.position.y)
@@ -49,11 +49,11 @@ class Day2:
         Input(Commands.Aim, 8),
         Input(Commands.Move, 2),
     ), inputs)
-        
+
     val sub = Submarine2()
     for (i <- inputs)
         sub.input(i)
-    
+
     assertEquals(15, sub.position.x)
     assertEquals(60, sub.position.y)
     assertEquals(900, sub.position.x * sub.position.y)

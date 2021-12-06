@@ -1,11 +1,12 @@
 let
   pkgs = import <nixpkgs> {};
-in 
+in
   pkgs.mkShell {
     buildInputs = [
       pkgs.coursier
       pkgs.jdk11
       pkgs.sbt
+      pkgs.scalafmt
     ];
 
     shellHook = ''

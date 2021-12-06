@@ -34,7 +34,7 @@ object Commands extends Enumeration {
 }
 
 
-case class Input(command: Commands.Command, value: Int) 
+case class Input(command: Commands.Command, value: Int)
 
 class Submarine2() {
   var position = Vector2(0,0)

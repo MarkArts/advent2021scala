@@ -47,12 +47,12 @@ class Day3:
       List(0,1,0,1,0),
     )
 
-    for (i <- 0 until input(0).length) 
+    for (i <- 0 until input(0).length)
       assertEquals(Some(1), getMostCommonBit(i, input))
 
-    for (i <- 0 until input(0).length) 
+    for (i <- 0 until input(0).length)
       assertEquals(Some(0), getLeastCommonBit(i, input))
-  
+
   @Test def test_bit_out_of_range(): Unit =
     val input = List(
       List(1,0,1,0,1)
@@ -60,7 +60,7 @@ class Day3:
 
     assertEquals(None, getMostCommonBit(-1, input))
     assertEquals(None, getMostCommonBit(5, input))
-    
+
   @Test def test_input_to_diagnostic(): Unit =
     val input = List(
       "00100",
@@ -69,9 +69,9 @@ class Day3:
       "10111",
     )
     val expected = List(
-      List(0,0,1,0,0), 
-      List(1,1,1,1,0), 
-      List(1,0,1,1,0), 
+      List(0,0,1,0,0),
+      List(1,1,1,1,0),
+      List(1,0,1,1,0),
       List(1,0,1,1,1)
     )
 
