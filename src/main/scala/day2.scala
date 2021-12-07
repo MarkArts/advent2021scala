@@ -1,12 +1,42 @@
 import scala.languageFeature.postfixOps
 
 
-case class Vector2(x:Int, y:Int) {
+case class Vector2(x:Double, y:Double) {
 
   def +(vec: Vector2): Vector2 =
     return Vector2(
       x+vec.x,
       y+vec.y
+    )
+
+  def +(i: Double): Vector2 =
+    return Vector2(
+      x+i,
+      y+i
+    )
+
+  def -(vec: Vector2): Vector2 =
+    return Vector2(
+      x-vec.x,
+      y-vec.y
+    )
+
+  def -(i: Double): Vector2 =
+    return Vector2(
+      x-i,
+      y-i
+    )
+
+  def *(vec: Vector2): Vector2 =
+    return Vector2(
+      x*vec.x,
+      y*vec.y
+    )
+
+  def *(i: Double): Vector2 =
+    return Vector2(
+      x*i,
+      y*i
     )
 }
 

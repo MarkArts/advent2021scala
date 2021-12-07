@@ -26,9 +26,9 @@ class Day2:
     for (v <- vectors)
         sub.move(v)
 
-    assertEquals(15, sub.position.x)
-    assertEquals(10, sub.position.y)
-    assertEquals(150, sub.position.x * sub.position.y)
+    assertEquals(15, sub.position.x, 0.1)
+    assertEquals(10, sub.position.y, 0.1)
+    assertEquals(150, sub.position.x * sub.position.y, 0.1)
 
   @Test def test_submarine_2(): Unit =
     var input = List(
@@ -54,6 +54,6 @@ class Day2:
     for (i <- inputs)
         sub.input(i)
 
-    assertEquals(15, sub.position.x)
-    assertEquals(60, sub.position.y)
-    assertEquals(900, sub.position.x * sub.position.y)
+    assertEquals(15, sub.position.x, 0.1)
+    assertEquals(60, sub.position.y, 0.1)
+    assertEquals(900, sub.position.x * sub.position.y, 0.1)

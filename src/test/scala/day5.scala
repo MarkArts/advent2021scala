@@ -36,18 +36,21 @@ class Day5:
     )
 
   @Test def test_is_diagonal(): Unit =
-    assertEquals(false, isStraight((Vector2(0,1), Vector2(1,2))))
-    assertEquals(true, isStraight((Vector2(0,0), Vector2(2,0))))
+    assertEquals(true, isDiagonal((Vector2(1,1), Vector2(3,3))))
+    assertEquals(true, isDiagonal((Vector2(9,7), Vector2(7,9))))
 
   @Test def test_is_straight(): Unit =
-    assertEquals(false, isStraight((Vector2(1,1), Vector2(3,3))))
-    assertEquals(true, isStraight((Vector2(9,7), Vector2(7,9))))
+    assertEquals(false, isStraight((Vector2(0,1), Vector2(1,2))))
+    assertEquals(true, isStraight((Vector2(0,0), Vector2(2,0))))
 
   @Test def test_draw_diagonal(): Unit =
     val lines = List[Line](
       (Vector2(1,1), Vector2(3,3)),
       (Vector2(9,7), Vector2(7,9))
     )
+
+    val grid = drawGrid(lines)
+    drawDebug(grid)
 
     assertMapEqual(Map[Vector2, Int](
       Vector2(1,1) -> 1,
@@ -56,7 +59,7 @@ class Day5:
       Vector2(9,7) -> 1,
       Vector2(8,8) -> 1,
       Vector2(7,9) -> 1,
-    ), drawGrid(lines))
+    ), grid)
 
   @Test def test_draw_line(): Unit =
     val right4 = (Vector2(1,2), Vector2(5,2))
@@ -95,13 +98,13 @@ class Day5:
     ), drawLine(up5))
 
   @Test def test_merge(): Unit =
-    val a: Grid = Map[Vector2, Int](
+    val a: Grid[Int] = Map[Vector2, Int](
       Vector2(1,2) -> 1,
       Vector2(1,3) -> 1,
       Vector2(1,4) -> 1,
     )
 
-    val b: Grid = Map[Vector2, Int](
+    val b: Grid[Int] = Map[Vector2, Int](
       Vector2(2,3) -> 1,
       Vector2(1,3) -> 1,
       Vector2(0,3) -> 1,
@@ -117,7 +120,7 @@ class Day5:
       ), mergeGrid(a, b)
     )
 
-    val emptyA: Grid = Map[Vector2, Int]()
+    val emptyA: Grid[Int] = Map[Vector2, Int]()
 
     assertMapEqual(
       Map[Vector2, Int](
@@ -127,7 +130,7 @@ class Day5:
       ), mergeGrid(emptyA, b)
     )
 
-    val emptyB: Grid = Map[Vector2, Int]()
+    val emptyB: Grid[Int] = Map[Vector2, Int]()
 
     assertMapEqual(
       Map[Vector2, Int](
@@ -143,6 +146,9 @@ class Day5:
       (Vector2(4,0), Vector2(4,2)),
       (Vector2(5,2), Vector2(0,2))
     )
+
+    val grid = drawGrid(lines)
+    drawDebug(grid)
 
     assertMapEqual(
       Map[Vector2, Int](
@@ -161,7 +167,7 @@ class Day5:
         Vector2(2,2) -> 1,
         Vector2(1,2) -> 1,
 
-      ), drawGrid(lines))
+      ), grid)
 
   @Test def test_example(): Unit =
     val input = List[String](
@@ -176,13 +182,21 @@ class Day5:
       "0,0 -> 8,8",
       "5,5 -> 8,2"
     )
-    val lines = input.map(parseLine).filter(isStraight)
-    val grid = drawOnlyStraight(lines)
+    val straight = input.map(parseLine).filter(isStraight)
+    val grid = drawGrid(straight)
 
-    for (x <- 0 to 9)
-      println("")
-      for (y <- 0 to 9)
-        print(grid.getOrElse(Vector2(y,x), "."))
+    drawDebug(grid)
+    assertEquals(5, getIntersections(grid, 2))
+
+    val diagonal = input.map(parseLine).filter(x => isStraight(x) || isDiagonal(x))
+    val gridD = drawGrid(diagonal)
+
+    drawDebug(gridD)
+    assertEquals(12, getIntersections(gridD, 2))
+
+def drawDebug(grid: Grid[Int]): Unit =
+  for (x <- 0 to 9)
     println("")
-
-    assertEquals(5, getIntersections(drawGrid(lines), 2))
+    for (y <- 0 to 9)
+      print(grid.getOrElse(Vector2(y,x), "."))
+  println("")
