@@ -79,7 +79,7 @@ def drawLine(lines: Line): Grid[Int] =
 def getIntersections(grid: Grid[Int], min: Int): Int =
   grid
     .filter( (_, v) => v >= min)
-    .values.fold(0)( (acc, _) => acc + 1 )
+    .values.foldLeft(0)( (acc, _) => acc + 1 )
 
 
 // bonus image drawing:

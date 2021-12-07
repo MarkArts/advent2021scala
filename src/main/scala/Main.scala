@@ -2,12 +2,16 @@ import scala.io.Source
 import java.awt.image.BufferedImage
 import javax.imageio.ImageIO
 import java.io.File
+import scala.util.Success
+import scala.util.Failure
+import scala.concurrent.Await
 
 val day1File = "./inputs/day1.txt"
 val day2File = "./inputs/day2.txt"
 val day3File = "./inputs/day3.txt"
 val day4File = "./inputs/day4.txt"
 val day5File = "./inputs/day5.txt"
+val day6File = "./inputs/day6.txt"
 
 @main def day1: Unit =
   var inputs = Source.fromFile(day1File).getLines.map(l => l.toInt).toList
@@ -100,3 +104,23 @@ val day5File = "./inputs/day5.txt"
     out.setRGB(x._1.x.toInt, x._1.y.toInt, x._2.getRGB)
   }
   ImageIO.write(out, "jpg", new File("images/drawColor.jpg"))
+
+@main def day6: Unit =
+  val input = Source.fromFile(day6File).getLines
+  val fish = input.map(parseFishLine).toList(0)
+
+  println(sleeps(fish, 80).length)
+
+  val part1 = sleeps2(fish, 80) andThen {
+    case Success(f) => println(f)
+    case Failure(e) => throw e
+  }
+
+  Await.ready(part1, scala.concurrent.duration.Duration.Inf)
+
+  // val part2 = sleeps2(fish, 256) andThen {
+  //   case Success(f) => println(f)
+  //   case Failure(e) => throw e
+  // }
+
+  // Await.ready(part2, scala.concurrent.duration.Duration.Inf)
