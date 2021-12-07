@@ -109,18 +109,32 @@ val day6File = "./inputs/day6.txt"
   val input = Source.fromFile(day6File).getLines
   val fish = input.map(parseFishLine).toList(0)
 
-  println(sleeps(fish, 80).length)
 
-  val part1 = sleeps2(fish, 80) andThen {
-    case Success(f) => println(f)
-    case Failure(e) => throw e
+  time {
+    println(sleeps(fish, 80).length)
   }
 
-  Await.ready(part1, scala.concurrent.duration.Duration.Inf)
+  time {
+    val part1 = sleeps2(fish, 80) andThen {
+      case Success(f) => println(f)
+      case Failure(e) => throw e
+    }
 
-  // val part2 = sleeps2(fish, 256) andThen {
-  //   case Success(f) => println(f)
-  //   case Failure(e) => throw e
-  // }
+    Await.ready(part1, scala.concurrent.duration.Duration.Inf)
+  }
 
-  // Await.ready(part2, scala.concurrent.duration.Duration.Inf)
+  time {
+    println(sleeps3(fish, 80).sum)
+  }
+
+  time {
+    println(sleeps3(fish, 256).sum)
+  }
+
+def time[R](block: => R): R = {
+    val t0 = System.nanoTime()
+    val result = block    // call-by-name
+    val t1 = System.nanoTime()
+    println("Elapsed time: " + (t1 - t0) + "ns")
+    result
+}
