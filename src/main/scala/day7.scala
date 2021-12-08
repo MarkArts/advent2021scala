@@ -31,5 +31,5 @@ package day7Part2:
       .par
       .map(_ - to)
       .map(_.abs)
-      .map( (x) => (0 to x).fold(0)((acc,x) => acc + x) )
+      .map( (x) => (0 to x).sum )
       .sum
