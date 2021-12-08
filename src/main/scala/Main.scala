@@ -144,4 +144,5 @@ val day7File = "./inputs/day7.txt"
  val input = Source.fromFile(day7File).getLines
  val crabs = input.take(1).map(parseCrabLine).toList.head
 
- println(findCheapestMove(crabs))
+ println(findCheapestMove(crabs, day7Part1.moveCrabs))
+ println(findCheapestMove(crabs, day7Part2.moveCrabs))
