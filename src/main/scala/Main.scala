@@ -12,6 +12,8 @@ val day3File = "./inputs/day3.txt"
 val day4File = "./inputs/day4.txt"
 val day5File = "./inputs/day5.txt"
 val day6File = "./inputs/day6.txt"
+val day7File = "./inputs/day7.txt"
+
 
 @main def day1: Unit =
   var inputs = Source.fromFile(day1File).getLines.map(l => l.toInt).toList
@@ -109,6 +111,13 @@ val day6File = "./inputs/day6.txt"
   val input = Source.fromFile(day6File).getLines
   val fish = input.map(parseFishLine).toList(0)
 
+  def time[R](block: => R): R = {
+      val t0 = System.nanoTime()
+      val result = block    // call-by-name
+      val t1 = System.nanoTime()
+      println("Elapsed time: " + (t1 - t0) + "ns")
+      result
+  }
 
   time {
     println(sleeps(fish, 80).length)
@@ -131,10 +140,8 @@ val day6File = "./inputs/day6.txt"
     println(sleeps3(fish, 256).sum)
   }
 
-def time[R](block: => R): R = {
-    val t0 = System.nanoTime()
-    val result = block    // call-by-name
-    val t1 = System.nanoTime()
-    println("Elapsed time: " + (t1 - t0) + "ns")
-    result
-}
+@main def day7: Unit =
+ val input = Source.fromFile(day7File).getLines
+ val crabs = input.take(1).map(parseCrabLine).toList.head
+
+ println(findCheapestMove(crabs))
